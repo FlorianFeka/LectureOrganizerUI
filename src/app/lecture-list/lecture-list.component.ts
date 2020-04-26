@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngxs/store";
+import { GetLectures } from "../store/lecture.actions";
+import { Lecture } from "src/api";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-lecture-list',
-  templateUrl: './lecture-list.component.html',
-  styleUrls: ['./lecture-list.component.css']
+  selector: "app-lecture-list",
+  templateUrl: "./lecture-list.component.html",
+  styleUrls: ["./lecture-list.component.css"],
 })
 export class LectureListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  lectures$: Observable<Lecture[]>;
+  constructor(private store: Store) {
+    this.store.dispatch(GetLectures);
+    this.lectures$ = this.store.select((state) => state.lectures);
+    this.lectures$.subscribe();
   }
 
+  ngOnInit(): void {}
 }

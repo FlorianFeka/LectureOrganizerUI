@@ -125,7 +125,7 @@ class UsersService extends __BaseService {
    *
    * - `id`:
    */
-  UsersPutUserResponse(params: UsersService.UsersPutUserParams): __Observable<__StrictHttpResponse<Blob>> {
+  UsersPutUserResponse(params: UsersService.UsersPutUserParams): __Observable<__StrictHttpResponse<number>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -138,13 +138,13 @@ class UsersService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'blob'
+        responseType: 'text'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
+        return (_r as HttpResponse<any>).clone({ body: parseFloat((_r as HttpResponse<any>).body as string) }) as __StrictHttpResponse<number>
       })
     );
   }
@@ -155,9 +155,9 @@ class UsersService extends __BaseService {
    *
    * - `id`:
    */
-  UsersPutUser(params: UsersService.UsersPutUserParams): __Observable<Blob> {
+  UsersPutUser(params: UsersService.UsersPutUserParams): __Observable<number> {
     return this.UsersPutUserResponse(params).pipe(
-      __map(_r => _r.body as Blob)
+      __map(_r => _r.body as number)
     );
   }
 
@@ -203,7 +203,7 @@ module UsersService {
    */
   export interface UsersPutUserParams {
     user: User;
-    id: string;
+    id: number;
   }
 }
 

@@ -87,7 +87,7 @@ class LecturesService extends __BaseService {
   /**
    * @param id undefined
    */
-  LecturesGetLectureResponse(id: string): __Observable<__StrictHttpResponse<Lecture>> {
+  LecturesGetLectureResponse(id: number): __Observable<__StrictHttpResponse<Lecture>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -112,7 +112,7 @@ class LecturesService extends __BaseService {
   /**
    * @param id undefined
    */
-  LecturesGetLecture(id: string): __Observable<Lecture> {
+  LecturesGetLecture(id: number): __Observable<Lecture> {
     return this.LecturesGetLectureResponse(id).pipe(
       __map(_r => _r.body as Lecture)
     );
@@ -125,7 +125,7 @@ class LecturesService extends __BaseService {
    *
    * - `id`:
    */
-  LecturesPutLectureResponse(params: LecturesService.LecturesPutLectureParams): __Observable<__StrictHttpResponse<Blob>> {
+  LecturesPutLectureResponse(params: LecturesService.LecturesPutLectureParams): __Observable<__StrictHttpResponse<number>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -138,13 +138,13 @@ class LecturesService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'blob'
+        responseType: 'text'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
+        return (_r as HttpResponse<any>).clone({ body: parseFloat((_r as HttpResponse<any>).body as string) }) as __StrictHttpResponse<number>
       })
     );
   }
@@ -155,9 +155,9 @@ class LecturesService extends __BaseService {
    *
    * - `id`:
    */
-  LecturesPutLecture(params: LecturesService.LecturesPutLectureParams): __Observable<Blob> {
+  LecturesPutLecture(params: LecturesService.LecturesPutLectureParams): __Observable<number> {
     return this.LecturesPutLectureResponse(params).pipe(
-      __map(_r => _r.body as Blob)
+      __map(_r => _r.body as number)
     );
   }
 
@@ -203,7 +203,7 @@ module LecturesService {
    */
   export interface LecturesPutLectureParams {
     lecture: Lecture;
-    id: string;
+    id: number;
   }
 }
 

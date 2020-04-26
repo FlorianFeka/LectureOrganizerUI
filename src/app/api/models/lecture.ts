@@ -1,7 +1,9 @@
 /* tslint:disable */
+import { LectureComment } from './lecture-comment';
 export interface Lecture {
   date: string;
-  id: string;
+  lectureComments?: Array<LectureComment>;
+  lectureId: number;
   name: string;
   professor?: string;
   study?: string;

@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gen": "ng-swagger-gen -i http://127.0.0.1:5000/swagger/v1/swagger.json -o src/app/api"
+    "gen": "ng-swagger-gen -i http://localhost:5000/swagger/v1/swagger.json -o src/app/api"
   },
   "private": true,
   "dependencies": {

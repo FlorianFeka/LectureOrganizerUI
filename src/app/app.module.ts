@@ -9,18 +9,33 @@ import { LectureListComponent } from "./lecture-list/lecture-list.component";
 import { ApiModule } from "../api/api.module";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxsModule } from "@ngxs/store";
+import { MatSliderModule } from "@angular/material/slider";
 import { LectureState } from "./store/lecture.state";
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
-  declarations: [AppComponent, LectureListComponent],
+  declarations: [AppComponent, LectureListComponent, NavbarComponent],
   imports: [
     NgxsModule.forRoot([LectureState]),
     ApiModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatSliderModule,
     MatMenuModule,
     HttpClientModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

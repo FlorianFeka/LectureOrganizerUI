@@ -14,7 +14,6 @@ export class LectureListComponent implements OnInit {
   constructor(private store: Store) {
     this.store.dispatch(GetLectures);
     this.lectures$ = this.store.select((state) => state.lectures);
-    this.lectures$.subscribe();
   }
 
   ngOnInit(): void {}

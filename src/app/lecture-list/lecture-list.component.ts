@@ -22,7 +22,6 @@ export class LectureListComponent implements OnInit {
             delete lecture.lectureComments;
             return lecture;
           })
-          console.log(data.lectures);
           return data.lectures
         })
       );

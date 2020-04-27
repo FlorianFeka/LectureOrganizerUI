@@ -24,7 +24,6 @@ export class LectureState {
   @Action(GetLectures)
   get({ setState }: StateContext<LectureStateModel>) {
     this.lectureService.lecturesGetLectures().subscribe((data) => {
-      console.log(data);
       setState({
         lectures: data,
       });

@@ -21,6 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [AppComponent, LectureListComponent, NavbarComponent, DashboardComponent],
@@ -35,6 +36,7 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     LayoutModule,
     MatToolbarModule,
+    MatTableModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
@@ -45,4 +47,4 @@ import { MatCardModule } from '@angular/material/card';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

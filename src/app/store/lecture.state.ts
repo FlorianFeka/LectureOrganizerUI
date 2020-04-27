@@ -15,7 +15,7 @@ export interface LectureStateModel {
 })
 @Injectable()
 export class LectureState {
-  constructor(private lectureService: LecturesService) {}
+  constructor(private lectureService: LecturesService) { }
   @Selector()
   static getTutorials(state: LectureStateModel) {
     return state.lectures;

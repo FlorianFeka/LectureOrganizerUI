@@ -1,12 +1,16 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
@@ -19,11 +23,17 @@ import { ApiModule } from '../api/api.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
+import { LectureCreateComponent } from './module/lecture/page/lecture-create/lecture-create.component';
 import { LectureListComponent } from './module/lecture/page/lecture-list/lecture-list.component';
 import { LectureState } from './store/lecture.state';
 
 @NgModule({
-  declarations: [AppComponent, LectureListComponent, NavbarComponent],
+  declarations: [
+    AppComponent,
+    LectureListComponent,
+    NavbarComponent,
+    LectureCreateComponent
+  ],
   imports: [
     NgxsModule.forRoot([LectureState]),
     ApiModule,
@@ -42,8 +52,12 @@ import { LectureState } from './store/lecture.state';
     MatListModule,
     MatGridListModule,
     MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

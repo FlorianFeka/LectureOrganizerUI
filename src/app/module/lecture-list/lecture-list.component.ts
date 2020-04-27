@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngxs/store";
-import { GetLectures } from "../store/lecture.actions";
-import { Lecture } from "src/api";
 import { Observable } from "rxjs";
 import { map, tap } from 'rxjs/operators';
+import { Lecture } from 'src/api';
+import { GetLectures } from 'src/app/store/lecture.actions';
 
 @Component({
   selector: "app-lecture-list",

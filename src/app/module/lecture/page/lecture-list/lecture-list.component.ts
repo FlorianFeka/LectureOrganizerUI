@@ -14,13 +14,7 @@ import { LectureState } from 'src/app/store/lecture.state';
 })
 export class LectureListComponent implements OnInit {
   lectures$: Observable<Lecture[]>;
-  displayedColumns: string[] = [
-    'lectureId',
-    'name',
-    'subject',
-    'study',
-    'professor'
-  ];
+  displayedColumns: string[] = ['name', 'subject', 'study', 'professor'];
   constructor(private store: Store) {
     this.store.dispatch(GetLectures);
     this.lectures$ = this.store.select(LectureState.lectures);

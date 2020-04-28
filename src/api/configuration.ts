@@ -45,12 +45,12 @@ export class Configuration {
      * @param contentTypes - the array of content types that are available for selection
      * @returns the selected content-type or <code>undefined</code> if no selection could be made.
      */
-    public selectHeaderContentType (contentTypes: string[]): string | undefined {
+    public selectHeaderContentType(contentTypes: string[]): string | undefined {
         if (contentTypes.length === 0) {
             return undefined;
         }
 
-        let type = contentTypes.find(x => this.isJsonMime(x));
+        const type = contentTypes.find(x => this.isJsonMime(x));
         if (type === undefined) {
             return contentTypes[0];
         }
@@ -69,7 +69,7 @@ export class Configuration {
             return undefined;
         }
 
-        let type = accepts.find(x => this.isJsonMime(x));
+        const type = accepts.find(x => this.isJsonMime(x));
         if (type === undefined) {
             return accepts[0];
         }

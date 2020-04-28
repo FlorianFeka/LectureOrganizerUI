@@ -10,22 +10,22 @@ export interface LectureStateModel {
 @State<LectureStateModel>({
   name: 'lectures',
   defaults: {
-    lectures: [],
-  },
+    lectures: []
+  }
 })
 @Injectable()
 export class LectureState {
-  constructor(private lectureService: LecturesService) { }
+  constructor(private lectureService: LecturesService) {}
   @Selector()
-  static getTutorials(state: LectureStateModel) {
-    return state.lectures;
+  static lectures(state: LectureStateModel) {
+    return [...state.lectures];
   }
 
   @Action(GetLectures)
   get({ setState }: StateContext<LectureStateModel>) {
     this.lectureService.lecturesGetLectures().subscribe((data) => {
       setState({
-        lectures: data,
+        lectures: data
       });
     });
   }

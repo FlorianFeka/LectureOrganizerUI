@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Lecture } from 'src/api';
 
 import { GetLectures } from '../../../../store/lecture.actions';
+import { LectureState } from 'src/app/store/lecture.state';
 
 @Component({
   selector: 'lecture-list',
@@ -22,17 +23,7 @@ export class LectureListComponent implements OnInit {
   ];
   constructor(private store: Store) {
     this.store.dispatch(GetLectures);
-    this.lectures$ = this.store
-      .select((state) => state.lectures)
-      .pipe(
-        map((data) => {
-          data.lectures.map((lecture) => {
-            delete lecture.lectureComments;
-            return lecture;
-          });
-          return data.lectures;
-        })
-      );
+    this.lectures$ = this.store.select(LectureState.lectures);
   }
 
   ngOnInit(): void {}

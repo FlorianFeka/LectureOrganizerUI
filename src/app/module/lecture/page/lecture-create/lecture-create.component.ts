@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { CreateLecture } from 'src/app/store/lecture.actions';
 
 @Component({
   selector: 'lecture-lecture-create',
@@ -7,16 +9,18 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./lecture-create.component.css']
 })
 export class LectureCreateComponent {
-  addressForm = this.fb.group({
+  lectureForm = this.fb.group({
     name: [null, Validators.required],
     subject: [null, Validators.required],
     study: [null, Validators.required],
     professor: [null, Validators.required],
-    date: null
+    date: [null, Validators.required]
   });
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit() {
-    alert('Thanks!');
+    if (this.lectureForm.valid) {
+      this.store.dispatch(new CreateLecture(this.lectureForm.value));
+    }
   }
 }

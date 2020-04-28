@@ -28,6 +28,7 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 import { LectureCreateComponent } from './module/lecture/page/lecture-create/lecture-create.component';
 import { LectureListComponent } from './module/lecture/page/lecture-list/lecture-list.component';
 import { LectureState } from './store/lecture.state';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { LectureState } from './store/lecture.state';
     LectureCreateComponent
   ],
   imports: [
-    NgxsModule.forRoot([LectureState]),
+    NgxsModule.forRoot([LectureState], {
+      developmentMode: !environment.production
+    }),
     ApiModule,
     BrowserModule,
     AppRoutingModule,

@@ -4,7 +4,12 @@ export class GetLectures {
   static readonly type = '[Lecture] Get Lectures';
 }
 
+export class GetOneLecture {
+  static readonly type = '[Lecture] Get One Lecture';
+  constructor(public readonly lectureId: number) {}
+}
+
 export class CreateLecture {
   static readonly type = '[Lecture] Create Lecture';
-  constructor(public lecture: Lecture) {}
+  constructor(public readonly lecture: Lecture) {}
 }

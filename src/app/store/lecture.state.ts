@@ -1,16 +1,19 @@
-import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { GetLectures, CreateLecture } from './lecture.actions';
-import { Lecture, LecturesService, ApiModule } from 'src/api';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Lecture, LecturesService } from 'src/api';
+
+import { CreateLecture, GetLectures, GetOneLecture } from './lecture.actions';
 
 export interface LectureStateModel {
   lectures: Lecture[];
+  currentLecture: Lecture;
 }
 
 @State<LectureStateModel>({
   name: 'lectures',
   defaults: {
-    lectures: []
+    lectures: [],
+    currentLecture: null
   }
 })
 @Injectable()
@@ -21,17 +24,41 @@ export class LectureState {
     return [...state.lectures];
   }
 
+  @Selector()
+  static lecture(state: LectureStateModel) {
+    return state.currentLecture;
+  }
+
   @Action(GetLectures)
-  getLectures({ setState }: StateContext<LectureStateModel>) {
+  getLectures({ patchState }: StateContext<LectureStateModel>) {
     this.lectureService.lecturesGetLectures().subscribe((data) => {
-      setState({
+      patchState({
         lectures: data
       });
     });
   }
 
+  @Action(GetOneLecture)
+  getOneLecture(ctx: StateContext<LectureStateModel>, payoad: GetOneLecture) {
+    console.log(payoad);
+    console.log(payoad.lectureId);
+
+    this.lectureService
+      .lecturesGetLecture(payoad.lectureId)
+      .subscribe((data) => {
+        console.log(data);
+
+        ctx.patchState({
+          currentLecture: data
+        });
+      });
+  }
+
   @Action(CreateLecture)
-  createLecture(ctx: StateContext<LectureState>, { lecture }: CreateLecture) {
+  createLecture(
+    ctx: StateContext<LectureStateModel>,
+    { lecture }: CreateLecture
+  ) {
     this.lectureService.lecturesPostLecture(lecture).subscribe();
   }
 }

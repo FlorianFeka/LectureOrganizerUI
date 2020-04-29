@@ -1,24 +1,27 @@
 <table mat-table [dataSource]="lectures$ | async" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/lecture/detail', element.lectureId]">{{element.name}}</a>
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef> Subject </th>
+      <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="subject">
-    <th mat-header-cell *matHeaderCellDef> Subject </th>
-    <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
-  </ng-container>
+    <ng-container matColumnDef="study">
+      <th mat-header-cell *matHeaderCellDef> Study </th>
+      <td mat-cell *matCellDef="let element"> {{element.study}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="study">
-    <th mat-header-cell *matHeaderCellDef> Study </th>
-    <td mat-cell *matCellDef="let element"> {{element.study}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="professor">
-    <th mat-header-cell *matHeaderCellDef> Professor </th>
-    <td mat-cell *matCellDef="let element"> {{element.professor}} </td>
-  </ng-container>
+    <ng-container matColumnDef="professor">
+      <th mat-header-cell *matHeaderCellDef> Professor </th>
+      <td mat-cell *matCellDef="let element"> {{element.professor}} </td>
+    </ng-container>
+  
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

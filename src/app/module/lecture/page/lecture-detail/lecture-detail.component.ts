@@ -19,7 +19,7 @@ export class LectureDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      const lectureId = +params.get('id');
+      const lectureId = params.get('id');
       this.store.dispatch(new GetOneLecture(lectureId));
     });
     this.lecture$ = this.store.select(LectureState.lecture);

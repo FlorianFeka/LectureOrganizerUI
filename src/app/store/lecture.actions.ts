@@ -6,7 +6,7 @@ export class GetLectures {
 
 export class GetOneLecture {
   static readonly type = '[Lecture] Get One Lecture';
-  constructor(public readonly lectureId: number) {}
+  constructor(public readonly lectureId: string) {}
 }
 
 export class CreateLecture {

@@ -29,13 +29,15 @@ import { LectureCreateComponent } from './module/lecture/page/lecture-create/lec
 import { LectureListComponent } from './module/lecture/page/lecture-list/lecture-list.component';
 import { LectureState } from './store/lecture.state';
 import { environment } from 'src/environments/environment';
+import { LectureDetailComponent } from './module/lecture/page/lecture-detail/lecture-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LectureListComponent,
     NavbarComponent,
-    LectureCreateComponent
+    LectureCreateComponent,
+    LectureDetailComponent
   ],
   imports: [
     NgxsModule.forRoot([LectureState], {

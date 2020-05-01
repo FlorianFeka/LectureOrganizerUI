@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Lecture } from 'src/api';
+import { LectureState } from 'src/app/store/lecture.state';
 
 import { GetLectures } from '../../../../store/lecture.actions';
-import { LectureState } from 'src/app/store/lecture.state';
 
 @Component({
   selector: 'lecture-list',

@@ -7,6 +7,7 @@ import { LectureListComponent } from './module/lecture/page/lecture-list/lecture
 
 const routes: Routes = [
   { path: '', redirectTo: 'lecture/list', pathMatch: 'full' },
+  { path: 'lecture', redirectTo: 'lecture/list', pathMatch: 'full' },
   { path: 'lecture/list', component: LectureListComponent },
   { path: 'lecture/create', component: LectureCreateComponent },
   { path: 'lecture/detail/:id', component: LectureDetailComponent }

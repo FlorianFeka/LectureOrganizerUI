@@ -1,14 +1,15 @@
-<mat-sidenav-container class="sidenav-container">
-    <mat-sidenav-content>
-        <mat-toolbar color="primary">
-            <mat-icon style="margin-right: 6px;">school</mat-icon>
-            <span>Lecture Organizer</span>
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <a mat-button routerLink="/lecture/list">
+        <mat-icon style="margin-right: 6px">school</mat-icon>
+        <span>Lecture Organizer</span>
+      </a>
 
-            <div class="flex-spacer"></div>
+      <div class="flex-spacer"></div>
 
-            <a mat-button>Login</a>
-            <a mat-button>Sign Up</a>
-        </mat-toolbar>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+      <a mat-button>Login</a>
+      <a mat-button>Sign Up</a>
+    </mat-toolbar>
+  </mat-sidenav-content>
 </mat-sidenav-container>

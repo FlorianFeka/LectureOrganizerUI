@@ -40,9 +40,6 @@ export class LectureState {
 
   @Action(GetOneLecture)
   getOneLecture(ctx: StateContext<LectureStateModel>, payoad: GetOneLecture) {
-    console.log(payoad);
-    console.log(payoad.lectureId);
-
     this.lectureService
       .lecturesGetLecture(payoad.lectureId)
       .subscribe((data) => {

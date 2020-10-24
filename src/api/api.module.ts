@@ -15,7 +15,7 @@ import { UsersService } from './api/users.service';
     UsersService ]
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: (...args: any[]) => Configuration, deps?: any[]): ModuleWithProviders {
+    public static forRoot(configurationFactory: (...args: any[]) => Configuration, deps?: any[]): ModuleWithProviders<ApiModule> {
         return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory, deps } ]

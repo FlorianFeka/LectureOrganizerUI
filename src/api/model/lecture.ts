@@ -18,13 +18,16 @@ import { ValidatorFn, Validators } from '@angular/forms';
 import { BaseFormControlFactory } from 'openapi-typescript-angular-generator';
 
 import { LectureComment } from './lectureComment';
+import { Uni } from './uni';
 
 
 export interface Lecture { 
     lectureId: string;
     name: string;
-    subject?: string;
-    study?: string;
+    uni: Uni;
+    study: string;
+    subject: string;
+    rating: number;
     professor?: string;
     date: Date;
     lectureComments?: Array<LectureComment>;
@@ -40,8 +43,10 @@ export namespace Lecture {
     export enum Properties {
         lectureId = 'lectureId',
         name = 'name',
-        subject = 'subject',
+        uni = 'uni',
         study = 'study',
+        subject = 'subject',
+        rating = 'rating',
         professor = 'professor',
         date = 'date',
         lectureComments = 'lectureComments'
@@ -59,9 +64,21 @@ export namespace Lecture {
                 ['required', Validators.required],
                 ['minlength', Validators.minLength(1)],
         ],
-        subject: [
+        uni: [
+                ['required', Validators.required],
         ],
         study: [
+                ['required', Validators.required],
+                ['minlength', Validators.minLength(1)],
+        ],
+        subject: [
+                ['required', Validators.required],
+                ['minlength', Validators.minLength(1)],
+        ],
+        rating: [
+                ['required', Validators.required],
+                ['min', Validators.min(0)],
+                ['max', Validators.max(5)],
         ],
         professor: [
         ],
@@ -88,8 +105,10 @@ export namespace Lecture {
           model: Lecture = {
             lectureId: null,
             name: null,
-            subject: null,
+            uni: null,
             study: null,
+            subject: null,
+            rating: null,
             professor: null,
             date: null,
             lectureComments: null,

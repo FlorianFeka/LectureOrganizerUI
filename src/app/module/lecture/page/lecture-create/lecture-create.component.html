@@ -7,9 +7,9 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Lecture Name" formControlName="name">
+            <input matInput placeholder="Lecture Name" formControlName="name" />
             <mat-error *ngIf="lectureForm.controls['name'].hasError('required')">
-              Lecture name is <strong>required</strong>
+              Lecture Name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Subject" formControlName="subject">
+            <input matInput placeholder="Subject" formControlName="subject" />
             <mat-error *ngIf="lectureForm.controls['subject'].hasError('required')">
               Subject is <strong>required</strong>
             </mat-error>
@@ -25,7 +25,7 @@
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Study" formControlName="study">
+            <input matInput placeholder="Study" formControlName="study" />
             <mat-error *ngIf="lectureForm.controls['study'].hasError('required')">
               Study is <strong>required</strong>
             </mat-error>
@@ -35,7 +35,11 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Professor" formControlName="professor"></textarea>
+            <textarea
+              matInput
+              placeholder="Professor"
+              formControlName="professor"
+            ></textarea>
             <mat-error *ngIf="lectureForm.controls['professor'].hasError('required')">
               Professor is <strong>required</strong>
             </mat-error>
@@ -46,7 +50,7 @@
         <div class="col">
           <mat-form-field>
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date">
+            <input matInput [matDatepicker]="picker" formControlName="date" />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="lectureForm.controls['date'].hasError('required')">
@@ -55,7 +59,6 @@
           </mat-form-field>
         </div>
       </div>
-      
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit">Submit</button>

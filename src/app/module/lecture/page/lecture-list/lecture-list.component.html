@@ -2,9 +2,7 @@
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let element">
-      <a [routerLink]="['/lecture/detail', element.lectureId]">{{
-        element.name
-      }}</a>
+      <a [routerLink]="['/lecture/detail', element.lectureId]">{{ element.name }}</a>
     </td>
   </ng-container>
 

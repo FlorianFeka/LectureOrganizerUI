@@ -4,10 +4,7 @@
     <h3><b>University:</b> {{ lecture.uni.name }}</h3>
     <h3>Subject: {{ lecture.subject }}</h3>
     <p>Professor: {{ lecture.professor }}</p>
-    <mat-card
-      style="margin-top: 4px"
-      *ngFor="let comment of lecture.lectureComments"
-    >
+    <mat-card style="margin-top: 4px" *ngFor="let comment of lecture.lectureComments">
       <p>
         <small>
           <b>{{ comment.user.username }}</b>

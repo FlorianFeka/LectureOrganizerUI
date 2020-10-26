@@ -30,6 +30,7 @@ import { LectureListComponent } from './module/lecture/page/lecture-list/lecture
 import { LectureState } from './store/lecture.state';
 import { environment } from 'src/environments/environment';
 import { LectureDetailComponent } from './module/lecture/page/lecture-detail/lecture-detail.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LectureDetailComponent } from './module/lecture/page/lecture-detail/lec
     LectureListComponent,
     NavbarComponent,
     LectureCreateComponent,
-    LectureDetailComponent
+    LectureDetailComponent,
+    CommentComponent
   ],
   imports: [
     NgxsModule.forRoot([LectureState], {

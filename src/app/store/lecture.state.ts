@@ -41,8 +41,6 @@ export class LectureState {
   @Action(GetOneLecture)
   getOneLecture(ctx: StateContext<LectureStateModel>, payoad: GetOneLecture) {
     this.lectureService.lectureGetLecture(payoad.lectureId).subscribe((data) => {
-      console.log(data);
-
       ctx.patchState({
         currentLecture: data
       });

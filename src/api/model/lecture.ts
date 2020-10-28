@@ -24,12 +24,13 @@ import { Uni } from './uni';
 export interface Lecture { 
     lectureId: string;
     name: string;
-    uni: Uni;
+    uniId: string;
     study: string;
     subject: string;
     rating: number;
     professor?: string;
     date: Date;
+    uni?: Uni;
     lectureComments?: Array<LectureComment>;
 }
 
@@ -43,12 +44,13 @@ export namespace Lecture {
     export enum Properties {
         lectureId = 'lectureId',
         name = 'name',
-        uni = 'uni',
+        uniId = 'uniId',
         study = 'study',
         subject = 'subject',
         rating = 'rating',
         professor = 'professor',
         date = 'date',
+        uni = 'uni',
         lectureComments = 'lectureComments'
     }
 
@@ -64,8 +66,9 @@ export namespace Lecture {
                 ['required', Validators.required],
                 ['minlength', Validators.minLength(1)],
         ],
-        uni: [
+        uniId: [
                 ['required', Validators.required],
+                ['minlength', Validators.minLength(1)],
         ],
         study: [
                 ['required', Validators.required],
@@ -84,6 +87,8 @@ export namespace Lecture {
         ],
         date: [
                 ['required', Validators.required],
+        ],
+        uni: [
         ],
         lectureComments: [
         ],
@@ -105,12 +110,13 @@ export namespace Lecture {
           model: Lecture = {
             lectureId: null,
             name: null,
-            uni: null,
+            uniId: null,
             study: null,
             subject: null,
             rating: null,
             professor: null,
             date: null,
+            uni: null,
             lectureComments: null,
           }
         ) {

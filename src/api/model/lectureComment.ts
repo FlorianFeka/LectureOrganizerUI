@@ -24,6 +24,7 @@ import { User } from './user';
 export interface LectureComment { 
     lectureCommentId: string;
     text: string;
+    date: Date;
     lectureId: string;
     userId: string;
     lecture?: Lecture;
@@ -40,6 +41,7 @@ export namespace LectureComment {
     export enum Properties {
         lectureCommentId = 'lectureCommentId',
         text = 'text',
+        date = 'date',
         lectureId = 'lectureId',
         userId = 'userId',
         lecture = 'lecture',
@@ -57,6 +59,9 @@ export namespace LectureComment {
         text: [
                 ['required', Validators.required],
                 ['minlength', Validators.minLength(1)],
+        ],
+        date: [
+                ['required', Validators.required],
         ],
         lectureId: [
                 ['required', Validators.required],
@@ -86,6 +91,7 @@ export namespace LectureComment {
           model: LectureComment = {
             lectureCommentId: null,
             text: null,
+            date: null,
             lectureId: null,
             userId: null,
             lecture: null,

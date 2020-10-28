@@ -48,6 +48,19 @@
       </div>
       <div class="row">
         <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>University</mat-label>
+            <mat-select formControlName="uniId">
+              <mat-option *ngFor="let uni of unis$ | async" [value]="uni.uniId">
+                {{ uni.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="lectureForm.controls['uniId'].hasError('required')">
+              University is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
           <mat-form-field>
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="date" />

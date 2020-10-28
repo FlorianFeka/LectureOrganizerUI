@@ -14,10 +14,10 @@ import { GetLectures } from '../../../../store/lecture.actions';
 export class LectureListComponent implements OnInit {
   lectures$: Observable<Lecture[]>;
   displayedColumns: string[] = ['name', 'study', 'subject', 'professor', 'uni'];
-  constructor(private store: Store) {
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
     this.store.dispatch(GetLectures);
     this.lectures$ = this.store.select(LectureState.lectures);
   }
-
-  ngOnInit(): void {}
 }

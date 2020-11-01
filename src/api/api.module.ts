@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { LectureService } from './api/lecture.service';
+import { LectureCommentService } from './api/lectureComment.service';
 import { UniService } from './api/uni.service';
 import { UserService } from './api/user.service';
 
@@ -10,7 +11,7 @@ import { UserService } from './api/user.service';
   imports: [],
   declarations: [],
   exports: [],
-  providers: [LectureService, UniService, UserService]
+  providers: [LectureService, LectureCommentService, UniService, UserService]
 })
 export class ApiModule {
   public static forRoot(

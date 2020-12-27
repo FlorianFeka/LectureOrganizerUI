@@ -1,7 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -32,6 +32,7 @@ import { environment } from 'src/environments/environment';
 import { LectureDetailComponent } from './module/lecture/page/lecture-detail/lecture-detail.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { UniState } from './store/uni.state';
+import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +41,15 @@ import { UniState } from './store/uni.state';
     NavbarComponent,
     LectureCreateComponent,
     LectureDetailComponent,
-    CommentComponent
+    CommentComponent,
+    CommentBoxComponent
   ],
   imports: [
     NgxsModule.forRoot([LectureState, UniState], {
       developmentMode: !environment.production
     }),
     ApiModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

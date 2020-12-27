@@ -25,4 +25,8 @@ export class LectureDetailComponent implements OnInit {
       this.lecture = data;
     });
   }
+
+  addComment(comment: string) {
+    console.log(comment);
+  }
 }

@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Lecture, LectureService } from 'src/api';
+import { Lecture, LectureCommentService, LectureService } from 'src/api';
 
-import { CreateLecture, GetLectures, GetOneLecture } from './lecture.actions';
+import {
+  CreateLecture,
+  CreateLectureComment,
+  GetLectures,
+  GetOneLecture
+} from './lecture.actions';
 
 export interface LectureStateModel {
   lectures: Lecture[];
@@ -18,7 +23,10 @@ export interface LectureStateModel {
 })
 @Injectable()
 export class LectureState {
-  constructor(private lectureService: LectureService) {}
+  constructor(
+    private lectureService: LectureService,
+    private lectureCommentService: LectureCommentService
+  ) {}
   @Selector()
   static lectures(state: LectureStateModel) {
     return [...state.lectures];
@@ -50,5 +58,13 @@ export class LectureState {
   @Action(CreateLecture)
   createLecture(ctx: StateContext<LectureStateModel>, { lecture }: CreateLecture) {
     this.lectureService.lecturePostLecture(lecture).subscribe();
+  }
+
+  @Action(CreateLectureComment)
+  createLectureComment(
+    ctx: StateContext<LectureStateModel>,
+    { comment }: CreateLectureComment
+  ) {
+    this.lectureCommentService.lectureCommentPostLectureComment(comment).subscribe();
   }
 }

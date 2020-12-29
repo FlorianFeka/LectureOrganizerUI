@@ -1,0 +1,85 @@
+<form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()">
+  <mat-card style="width: 60%; margin: auto">
+    <mat-card-title>Register</mat-card-title>
+    <mat-divider style="margin-top: 1em"></mat-divider>
+    <mat-card-content>
+      <mat-form-field class="register-field" style="padding-top: 2em">
+        <input matInput placeholder="Username" formControlName="username" />
+        <mat-error *ngIf="userRegisterForm.controls['username'].hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="register-field">
+        <input matInput placeholder="Email" formControlName="email" />
+        <mat-error *ngIf="userRegisterForm.controls['email'].hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="userRegisterForm.controls['email'].hasError('email')">
+          Email is <strong>invalid</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="register-field">
+        <input
+          matInput
+          placeholder="Repeat Email"
+          formControlName="repeatEmail"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="userRegisterForm.controls['repeatEmail'].hasError('required')">
+          Repeate Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="userRegisterForm.hasError('notSameEmail')">
+          Repeate Email needs to be the same as Email
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="register-field">
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          matInput
+          [type]="passwordHide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="passwordHide = !passwordHide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="passwordHide"
+        >
+          <mat-icon>{{ passwordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="userRegisterForm.controls['password'].hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="register-field">
+        <input
+          matInput
+          placeholder="Repeat Password"
+          formControlName="repeatPassword"
+          [type]="repeatPasswordHide ? 'password' : 'text'"
+          [errorStateMatcher]="matcher"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="repeatPasswordHide = !repeatPasswordHide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="repeatPasswordHide"
+        >
+          <mat-icon>{{ repeatPasswordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error
+          *ngIf="userRegisterForm.controls['repeatPassword'].hasError('required')"
+        >
+          Repeat Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="userRegisterForm.hasError('notSamePassword')">
+          Repeat Password needs to be the same as Password
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="margin-top: 2em">Register</button>
+    </mat-card-content>
+  </mat-card>
+</form>

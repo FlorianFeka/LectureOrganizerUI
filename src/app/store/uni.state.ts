@@ -23,9 +23,7 @@ export class UniState {
 
   @Action(GetUnis)
   getUnis({ patchState }: StateContext<UniStateModel>) {
-    console.log('GET UNIS');
     this.uniService.uniGetUniAll().subscribe((data) => {
-      console.log(data);
       patchState({
         unis: data
       });

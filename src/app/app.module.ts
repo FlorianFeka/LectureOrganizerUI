@@ -32,6 +32,8 @@ import { environment } from 'src/environments/environment';
 import { LectureDetailComponent } from './module/lecture/page/lecture-detail/lecture-detail.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { UniState } from './store/uni.state';
+import { RegisterComponent } from './module/register/register.component';
+import { UserState } from './store/user.state';
 
 @NgModule({
   declarations: [
@@ -40,10 +42,11 @@ import { UniState } from './store/uni.state';
     NavbarComponent,
     LectureCreateComponent,
     LectureDetailComponent,
-    CommentComponent
+    CommentComponent,
+    RegisterComponent
   ],
   imports: [
-    NgxsModule.forRoot([LectureState, UniState], {
+    NgxsModule.forRoot([LectureState, UniState, UserState], {
       developmentMode: !environment.production
     }),
     ApiModule,

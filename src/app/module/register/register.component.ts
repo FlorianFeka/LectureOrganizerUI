@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { User } from 'src/api';
 import { CreateUser } from 'src/app/store/user.actions';
+import { RegisterErrorStateMatcher } from './RegisterErrorStateMatcher';
 
 @Component({
   selector: 'lecture-register',
@@ -13,13 +14,18 @@ export class RegisterComponent implements OnInit {
   passwordHide: boolean = true;
   repeatPasswordHide: boolean = true;
 
-  userRegisterForm = this.fb.group({
-    username: [null, Validators.required],
-    email: [null, [Validators.required, Validators.email]],
-    repeatEmail: [null, Validators.required],
-    password: [null, Validators.required],
-    repeatPassword: [null, Validators.required]
-  });
+  matcher = new RegisterErrorStateMatcher();
+
+  userRegisterForm = this.fb.group(
+    {
+      username: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      repeatEmail: [null, Validators.required],
+      password: [null, Validators.required],
+      repeatPassword: [null, Validators.required]
+    },
+    { validators: [this.checkEmail, this.checkPassword] }
+  );
 
   constructor(private fb: FormBuilder, private store: Store) {}
 
@@ -27,14 +33,21 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     if (this.userRegisterForm.valid) {
-      let user: User = {
-        userId: null,
-        username: this.userRegisterForm.value.username,
-        email: this.userRegisterForm.value.email,
-        password: this.userRegisterForm.value.password
-      };
-
       this.store.dispatch(new CreateUser(this.userRegisterForm.value));
     }
+  }
+
+  checkPassword(group: FormGroup) {
+    let password = group.get('password').value;
+    let repeatPassword = group.get('repeatPassword').value;
+
+    return password === repeatPassword ? null : { notSamePassword: true };
+  }
+
+  checkEmail(group: FormGroup) {
+    let email = group.get('email').value;
+    let repeatEmail = group.get('repeatEmail').value;
+
+    return email === repeatEmail ? null : { notSameEmail: true };
   }
 }

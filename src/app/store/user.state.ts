@@ -23,8 +23,6 @@ export class UserState {
 
   @Action(CreateUser)
   createUser(ctx: StateContext<UserStateModel>, { user }: CreateUser) {
-    console.log('Post User');
-
     this.userService.userPostUser(user).subscribe();
   }
 }

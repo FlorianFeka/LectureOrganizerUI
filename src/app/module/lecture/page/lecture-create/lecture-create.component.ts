@@ -32,8 +32,6 @@ export class LectureCreateComponent implements OnInit {
 
   onSubmit() {
     if (this.lectureForm.valid) {
-      console.log(this.lectureForm.value);
-
       this.store.dispatch(new CreateLecture(this.lectureForm.value));
     }
   }

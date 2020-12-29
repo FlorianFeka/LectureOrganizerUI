@@ -1,5 +1,5 @@
 <form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()">
-  <mat-card style="width: 45%; margin: auto">
+  <mat-card style="width: 60%; margin: auto">
     <mat-card-title>Register</mat-card-title>
     <mat-card-content>
       <mat-form-field class="register-field">
@@ -18,9 +18,17 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="register-field">
-        <input matInput placeholder="Repeat Email" formControlName="repeatEmail" />
+        <input
+          matInput
+          placeholder="Repeat Email"
+          formControlName="repeatEmail"
+          [errorStateMatcher]="matcher"
+        />
         <mat-error *ngIf="userRegisterForm.controls['repeatEmail'].hasError('required')">
           Repeate Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="userRegisterForm.hasError('notSameEmail')">
+          Repeate Email needs to be the same as Email
         </mat-error>
       </mat-form-field>
       <mat-form-field class="register-field">
@@ -50,6 +58,7 @@
           placeholder="Repeat Password"
           formControlName="repeatPassword"
           [type]="repeatPasswordHide ? 'password' : 'text'"
+          [errorStateMatcher]="matcher"
         />
         <button
           mat-icon-button
@@ -65,11 +74,11 @@
         >
           Repeat Password is <strong>required</strong>
         </mat-error>
+        <mat-error *ngIf="userRegisterForm.hasError('notSamePassword')">
+          Repeat Password needs to be the same as Password
+        </mat-error>
       </mat-form-field>
-      <div class="row" style="display: inline">
-        <div class="flex-spacer"></div>
-        <button mat-raised-button color="primary">Register</button>
-      </div>
+      <button mat-raised-button color="primary" style="margin-top: 2em">Register</button>
     </mat-card-content>
   </mat-card>
 </form>

@@ -11,8 +11,8 @@ import { RegisterErrorStateMatcher } from './RegisterErrorStateMatcher';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  passwordHide: boolean = true;
-  repeatPasswordHide: boolean = true;
+  passwordHide = true;
+  repeatPasswordHide = true;
 
   matcher = new RegisterErrorStateMatcher();
 
@@ -38,15 +38,15 @@ export class RegisterComponent implements OnInit {
   }
 
   checkPassword(group: FormGroup) {
-    let password = group.get('password').value;
-    let repeatPassword = group.get('repeatPassword').value;
+    const password = group.get('password').value;
+    const repeatPassword = group.get('repeatPassword').value;
 
     return password === repeatPassword ? null : { notSamePassword: true };
   }
 
   checkEmail(group: FormGroup) {
-    let email = group.get('email').value;
-    let repeatEmail = group.get('repeatEmail').value;
+    const email = group.get('email').value;
+    const repeatEmail = group.get('repeatEmail').value;
 
     return email === repeatEmail ? null : { notSameEmail: true };
   }

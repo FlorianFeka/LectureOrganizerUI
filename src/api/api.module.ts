@@ -2,15 +2,15 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
+import { AuthenticateService } from './api/authenticate.service';
 import { LectureService } from './api/lecture.service';
 import { UniService } from './api/uni.service';
-import { UserService } from './api/user.service';
 
 @NgModule({
   imports: [],
   declarations: [],
   exports: [],
-  providers: [LectureService, UniService, UserService]
+  providers: [AuthenticateService, LectureService, UniService]
 })
 export class ApiModule {
   public static forRoot(

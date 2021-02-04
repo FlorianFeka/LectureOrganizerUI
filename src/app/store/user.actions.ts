@@ -1,6 +1,6 @@
-import { User } from 'src/api';
+import { RegisterModel } from 'src/api';
 
 export class CreateUser {
   static readonly type = '[User] Post User';
-  constructor(public readonly user: User) {}
+  constructor(public readonly user: RegisterModel) {}
 }

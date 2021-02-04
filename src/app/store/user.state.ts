@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { User, UserService } from 'src/api';
+import { LoginModel, AuthenticateService } from 'src/api';
 import { CreateUser } from './user.actions';
 
 export interface UserStateModel {
-  user: User;
+  user: LoginModel;
 }
 
 @State<UserStateModel>({
@@ -15,7 +15,7 @@ export interface UserStateModel {
 })
 @Injectable()
 export class UserState {
-  constructor(private userService: UserService) {}
+  constructor(private authService: AuthenticateService) {}
   @Selector()
   static user(state: UserStateModel) {
     return state.user;
@@ -23,6 +23,6 @@ export class UserState {
 
   @Action(CreateUser)
   createUser(ctx: StateContext<UserStateModel>, { user }: CreateUser) {
-    this.userService.userPostUser(user).subscribe();
+    this.authService.authenticateRegister(user).subscribe();
   }
 }

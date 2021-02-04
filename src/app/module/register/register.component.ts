@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { User } from 'src/api';
 import { CreateUser } from 'src/app/store/user.actions';
 import { RegisterErrorStateMatcher } from './RegisterErrorStateMatcher';
 

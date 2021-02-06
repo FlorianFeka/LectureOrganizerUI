@@ -1,0 +1,36 @@
+<form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
+  <mat-card style="width: 60%; margin: auto">
+    <mat-card-title>Login</mat-card-title>
+    <mat-divider style="margin-top: 1em"></mat-divider>
+    <mat-card-content>
+      <mat-form-field class="login-field" style="padding-top: 2em">
+        <input matInput placeholder="Username" formControlName="username" />
+        <mat-error *ngIf="userLoginForm.controls['username'].hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="login-field">
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          matInput
+          [type]="passwordHide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="passwordHide = !passwordHide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="passwordHide"
+        >
+          <mat-icon>{{ passwordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="userLoginForm.controls['password'].hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="margin-top: 2em">Login</button>
+    </mat-card-content>
+  </mat-card>
+</form>

@@ -34,6 +34,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { UniState } from './store/uni.state';
 import { RegisterComponent } from './module/register/register.component';
 import { UserState } from './store/user.state';
+import { LoginComponent } from './module/login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { UserState } from './store/user.state';
     LectureCreateComponent,
     LectureDetailComponent,
     CommentComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     NgxsModule.forRoot([LectureState, UniState, UserState], {

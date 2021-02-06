@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { read } from 'fs';
 import { AuthenticateService } from 'src/api';
 import { AuthenticateUser, CreateUser } from './user.actions';
 
 export class User {
   username: string;
+  token: Token;
+}
+
+export class Token {
   token: string;
+  expiration: string;
 }
 
 export interface UserStateModel {
@@ -33,6 +39,17 @@ export class UserState {
 
   @Action(AuthenticateUser)
   authenticateUser(ctx: StateContext<UserStateModel>, { user }: AuthenticateUser) {
-    this.authService.authenticateLogin(user).subscribe((data) => console.log(data));
+    this.authService.authenticateLogin(user).subscribe((data) => {
+      const reader = new window.FileReader();
+      reader.readAsText(data);
+      reader.onloadend = () => {
+        const loggedInUser = new User();
+        loggedInUser.username = user.username;
+        loggedInUser.token = JSON.parse(reader.result.toString());
+        ctx.patchState({
+          user: loggedInUser
+        });
+      };
+    });
   }
 }
